@@ -14,7 +14,7 @@ import scala.concurrent.Future
   */
 
 
-case class User (name:String,email:String,password:String , mobile:String, admin:Boolean,id:Int)
+case class User (name:String,email:String,password:String , mobile:String, admin:Boolean,id:Int=0)
 
 class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
   extends HasDatabaseConfigProvider[JdbcProfile] with UserTable{
@@ -29,8 +29,9 @@ class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
   }
 
   def add(name:String,email:String,password:String,mobile:String,admin:String): Unit ={
-println(name+email+password+mobile+admin)
+    db.run{userTable += User(name,email,password,mobile,true)}
   }
+
 
   def create() ={
     db.run{userTable.schema.create}
