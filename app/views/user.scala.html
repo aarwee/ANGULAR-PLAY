@@ -1,0 +1,28 @@
+
+
+@main("List Interns"){
+
+
+<div ng-controller="UserCtrl">
+
+    <table class="table">
+<tr><td>NAME</td><td>EMAIL</td><td>PASSWORD</td><td>MOBILE</td><td>ADMIN</td><td>ID</td></tr>
+        <tr ng-repeat="users in dataList">
+
+            <td>{{users.name}}</td>
+            <td>{{users.email}}</td>
+            <td>{{users.password}}</td>
+            <td>{{users.mobile}}</td>
+            <td>{{users.admin}}</td>
+            <td>{{users.id}}</td>
+
+        </tr>
+    </table>
+
+</div>
+
+<script type="text/javascript" src="@routes.Assets.versioned("javascripts/user.js")">
+
+</script>
+
+}
