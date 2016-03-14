@@ -1,0 +1,32 @@
+
+@main("ADD USER"){
+<div ng-controller="AddCtrl">
+
+
+<form>
+    <input type="text" placeholder="ID" class="text" ng-model="name" size="30">
+    <br>
+    <br>
+    <input type="text" placeholder="ID" class="text" ng-model="email" size="30">
+    <br>
+    <br>
+    <input type="text" placeholder="ID" class="text" ng-model="password" size="30">
+    <br>
+    <br>
+    <input type="text" placeholder="Name" class="text" ng-model="mobile" size="30">
+    <br>
+    <br>
+    <input type="text" placeholder="Email" class="text" ng-model="admin" size="30">
+    <br>
+    <br>
+    <input type="submit" class="btn btn-primary" ng-click="addTo()" value="Add Student" >
+    <br><br>
+  </form>
+    </div>
+<script type="text/javascript" src="@routes.Assets.versioned("javascripts/add.js")">
+</script>
+    }
+
+
+
+

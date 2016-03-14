@@ -28,6 +28,10 @@ class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
     db.run{userTable.filter(_.email === email).result.headOption}
   }
 
+  def add(name:String,email:String,password:String,mobile:String,admin:String): Unit ={
+println(name+email+password+mobile+admin)
+  }
+
   def create() ={
     db.run{userTable.schema.create}
   }
