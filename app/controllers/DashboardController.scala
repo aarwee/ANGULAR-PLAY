@@ -31,6 +31,25 @@ class DashboardController @Inject()(userRepo: UserRepo) extends Controller{
     )
   )
 
+  val updateForm= Form(
+    tuple(
+
+      "old-name"->nonEmptyText,
+      "name"-> nonEmptyText,
+      "email" -> nonEmptyText,
+      "password" -> nonEmptyText,
+      "mobile" -> nonEmptyText,
+      "admin" -> nonEmptyText
+    )
+  )
+
+//  val deleteForm= Form(
+//    tuple(
+//      "name"-> nonEmptyText,
+//    )
+//  )
+
+
 
   implicit val residentWrites: Writes[User] = (
     (JsPath \ "name").write[String] and
@@ -60,9 +79,7 @@ class DashboardController @Inject()(userRepo: UserRepo) extends Controller{
 
 
 
-  def delete =Action{
-    Ok("delete")
-  }
+
   def add = Action{
     Ok(views.html.add())
   }
@@ -76,5 +93,42 @@ class DashboardController @Inject()(userRepo: UserRepo) extends Controller{
 
   }
 
+  def update= Action{ implicit request =>
+    Ok(views.html.update())
+
+  }
+
+//def delete = Action{ implicit request =>
+//  Ok(views.html.delete())
+//
+//}
+//
+//
+//  def deleteData=Action{ implicit request =>
+//
+//   deleteForm.bindFromRequest().fold(
+//
+//
+//       badForm => {println(badForm);Ok("hey")},
+//
+//       data => {
+//         userRepo.deleteUser(data._1 )
+//         Ok("")}
+//     )
+//
+//  }
+
+  def updateData = Action{ implicit request =>
+
+    updateForm.bindFromRequest().fold(
+
+      badForm => {println(badForm);
+        Ok("hey")},
+
+      data => {
+        userRepo.updateUser(data._1, data._2, data._3, data._4, data._5, data._6); Ok("")}
+    )
+
+  }
 
 }

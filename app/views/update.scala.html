@@ -1,0 +1,40 @@
+
+@main("UPDATE USER"){
+<div ng-controller="UpdateCtrl">
+
+
+    <form>
+        <label>Enter the name of the user you want to update:</label>
+        <br>
+        <br>
+        <input type="text" placeholder="old-name" class="text" ng-model="old-name" size="30">
+        <br>
+        <br>
+        <label>Enter new values:</label>
+        <br>
+        <br>
+        <input type="text" placeholder="name" class="text" ng-model="name" size="30">
+        <br>
+        <br>
+        <input type="text" placeholder="email" class="text" ng-model="email" size="30">
+        <br>
+        <br>
+        <input type="text" placeholder="password" class="text" ng-model="password" size="30">
+        <br>
+        <br>
+        <input type="text" placeholder="mobile" class="text" ng-model="mobile" size="30">
+        <br>
+        <br>
+        <input type="text" placeholder="admin" class="text" ng-model="admin" size="30">
+        <br>
+        <br>
+        <input type="submit" class="btn btn-primary" ng-click="updateTo()" value="Update Student" >
+        <br><br>
+    </form>
+</div>
+<script type="text/javascript" src="@routes.Assets.versioned("javascripts/update.js")">
+</script>
+    }
+
+
+
