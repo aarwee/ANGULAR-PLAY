@@ -20,15 +20,26 @@ class UserRepoSpec extends Specification {
 
   "User repository" should {
 
-    "get a record" in new WithApplication {
-      val result = userRepo.getUser("rishabh@gmail.com")
-      val response = Await.result(result, Duration.Inf)
-      response.get.name === "rishabh"
-    }
+
     "get all record" in new WithApplication {
       val result = userRepo.getAll
       val response = Await.result(result, Duration.Inf)
-      response.head === User("rishabh","rishabh@gmail.com","1992","35555555",true,1)
+      response.head === User("rishabh","rishabh@gmail.com","kanpur","35555555","98998989",1)
+    }
+
+    "delete record by id" in new WithApplication{
+
+      val result = userRepo.deleteUser(1)
+      val response = Await.result(result,Duration.Inf)
+      response === 1
+    }
+
+    "get by id" in new WithApplication {
+
+      val result = userRepo.getUserById(1)
+      val response = Await.result(result,Duration.Inf)
+      response.head.name === "rishabh"
+
     }
 
   }

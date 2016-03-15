@@ -26,16 +26,19 @@
         @* And here's where we render the `Html` object containing
 
          * the page content. *@
-
-     <div class="container">
-       <div class="col-md-4"></div>
-         <div class ="col-md-6" style="border:2px solid">
-             <h1 style="margin-top:10px;margin-bottom:10px"> @title</h1><center> @content
-      @if(title != "ADD USER"){
-    <a href="/add">ADD</a>}
-
-        <a href="/delete"> DELETE </a> </center>
-     </div>
-         </div>
+        <div class="jumbotron" style="background-color: cornsilk ; margin-bottom:0px;">
+            <u ><h1 style="font-weight:bolder; color:teal"><strong>KNOLDUS</u></strong> <small style="font-style: italic;">tree of knowledge</small></h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">@title</div>
+                        <div class="panel-body">@content</div>
+                    </div></div>
+            </div>
+        </div>
     </body>
 </html>
+

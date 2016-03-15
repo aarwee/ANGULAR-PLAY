@@ -14,7 +14,7 @@ import scala.concurrent.Future
   */
 
 
-case class User (name:String,email:String,password:String , mobile:String, admin:Boolean,id:Int=0)
+case class User (name:String,email:String,address:String , mobile:String, emergency:String,id:Int=0)
 
 class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
   extends HasDatabaseConfigProvider[JdbcProfile] with UserTable {
@@ -27,15 +27,9 @@ class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
     }
   }
 
-  def getUser(email: String): Future[Option[User]] = {
+  def add(name: String, email: String, address: String, mobile: String, emergency: String): Unit = {
     db.run {
-      userTable.filter(_.email === email).result.headOption
-    }
-  }
-
-  def add(name: String, email: String, password: String, mobile: String, admin: String): Unit = {
-    db.run {
-      userTable += User(name, email, password, mobile, true)
+      userTable += User(name, email, address, mobile, emergency)
     }
   }
 
@@ -46,9 +40,9 @@ class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
     }
   }
 
-  def updateUser(old_name: String, name: String, email: String, password: String, mobile: String, admin: String): Unit = {
+  def updateUser(id: Int, name: String, email: String, address: String, mobile: String, emergency: String): Unit = {
     db.run {
-      userTable.filter(_.name === old_name).update(User(name, email, password, mobile, admin = true))
+      userTable.filter(_.id === id).update(User(name, email, address, mobile,emergency,id))
     }
 
   }
@@ -56,6 +50,10 @@ class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
   def deleteUser(id: Int): Future[Int]= {
     db.run {userTable.filter {_.id === id}.delete
     }
+  }
+
+  def getUserById(uid:Int):Future[Option[User]]={
+    db.run {userTable.filter(_.id === uid).result.headOption}
   }
 }
 
@@ -68,10 +66,10 @@ protected trait UserTable  {
     val id = column[Int]("id", O.PrimaryKey, O.AutoInc)
     val name = column[String]("name", O.SqlType("VARCHAR(20)"))
     val email = column[String]("email", O.SqlType("VARCHAR(20)"))
-    val password = column[String]("password", O.SqlType("VARCHAR(20)"))
+    val address = column[String]("address", O.SqlType("VARCHAR(20)"))
     val mobile = column[String]("mobile", O.SqlType("VARCHAR(10)"))
-    val admin = column[Boolean]("admin", O.SqlType("BOOLEAN"))
-    def * = (name,email,password,mobile,admin,id) <>(User.tupled, User.unapply)
+    val emergency = column[String]("emergency", O.SqlType("VARCHAR(50)"))
+    def * = (name,email,address,mobile,emergency,id) <>(User.tupled, User.unapply)
 
   }
   lazy val userTable = TableQuery[UserTable]

@@ -4,10 +4,11 @@ var demoApp = angular.module('demoApp', []);
         demoApp.controller('UpdateCtrl', function ($scope, $http){
 
         $scope.updateTo = function(){
-var data1 = {"old-name":$scope.old-name,"name":$scope.name,"email":$scope.email,"password":$scope.password,"mobile":$scope.mobile,"admin":$scope.admin};
+var data1 = {"id":parseInt($scope.id),"name":$scope.name,"email":$scope.email,"address":$scope.address,"mobile":$scope.mobile,"emergency":$scope.emergency};
 
 
-       return $http({
+    window.location='/showUser'
+       $http({
 
                      method:'POST',
                      url:'/updateData',
@@ -18,5 +19,6 @@ var data1 = {"old-name":$scope.old-name,"name":$scope.name,"email":$scope.email,
 
 
         }})
+
 
 

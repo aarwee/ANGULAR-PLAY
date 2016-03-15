@@ -3,20 +3,24 @@
 <div ng-controller="AddCtrl">
 
 
-<form>
+<form><label>NAME:</label><br>
     <input type="text" placeholder="name" class="text" ng-model="name" size="30">
     <br>
     <br>
+    <label>EMAIL:</label><br>
     <input type="text" placeholder="email" class="text" ng-model="email" size="30">
     <br>
     <br>
-    <input type="text" placeholder="password" class="text" ng-model="password" size="30">
+    <label>ADDRESS:</label><br>
+    <input type="text" placeholder="address" class="text" ng-model="address" size="30">
     <br>
     <br>
-    <input type="password" placeholder="password" class="text" ng-model="mobile" size="30">
+    <label>MOBILE No.:</label><br>
+    <input type="text" placeholder="mobile" class="text" ng-model="mobile" size="30">
     <br>
     <br>
-    <input type="text" placeholder="admin" class="text" ng-model="admin" size="30">
+    <label>EMERGENCY No.:</label><br>
+    <input type="text" placeholder="emergency no." class="text" ng-model="emergency" size="30">
     <br>
     <br>
     <input type="submit" class="btn btn-primary" ng-click="addTo()" value="Add Student" >

@@ -1,23 +1,29 @@
 
 
-@main("List Interns"){
+@main("List USER"){
 
 
 <div ng-controller="UserCtrl">
 
-    <table class="table">
-<tr><td>NAME</td><td>EMAIL</td><td>PASSWORD</td><td>MOBILE</td><td>ADMIN</td><td>ID</td></tr>
-        <tr ng-repeat="users in dataList">
+    <table class="table table-hover">
+<tr class="danger"><td>NAME</td><td>EMAIL</td><td>ADDRESS</td><td>MOBILE No.</td><td>EMERGENCY No.</td><td>ID</td><td>UPDATE</td></tr>
+        <tr class="warning" ng-repeat="users in dataList">
 
             <td>{{users.name}}</td>
             <td>{{users.email}}</td>
-            <td>{{users.password}}</td>
+            <td>{{users.address}}</td>
             <td>{{users.mobile}}</td>
-            <td>{{users.admin}}</td>
-            <td>{{users.id}}</td>
-
+            <td>{{users.emergency}}</td>
+            <td> {{users.id}}</td>
+            <td > <a href ="/update/{{users.id}}" ><button class="btn btn-success"><span class="glyphicon glyphicon-ok" aria-hidden="true">  CLICK ME </span></button></a></td>
         </tr>
+
     </table>
+
+
+    <form>
+     <p style="float:left">   <label >Enter id to delete:</label><input type="text" placeholder="id" class="text" ng-model="id" size="10"> <button type="submit" class="btn btn-danger" ng-click="deleteTo()">   <span class="glyphicon glyphicon-remove" aria-hidden="true"> Delete User</span> </button>
+   </p> </form> <a href="/add"><button style="float:right" class="btn btn-primary"><span class="glyphicon glyphicon-plus" aria-hidden="true">  ADD USER </span> </button>  </a>
 
 </div>
 

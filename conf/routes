@@ -12,7 +12,7 @@ GET      /show                        controllers.DashboardController.show
 GET      /showUser                    controllers.DashboardController.showUser
 
 
-GET      /delete                      controllers.DashboardController.delete
+
 POST     /deleteData                   controllers.DashboardController.deleteData
 
 
@@ -20,8 +20,8 @@ GET      /add                         controllers.DashboardController.add
 POST      /addData                         controllers.DashboardController.addData
 
 
-#GET      /update                       controllers.DashboardController.update
-#POST      /updateData                         controllers.DashboardController.updateData
+GET      /update/:id                       controllers.DashboardController.update(id)
+POST      /updateData                  controllers.DashboardController.updateData
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
