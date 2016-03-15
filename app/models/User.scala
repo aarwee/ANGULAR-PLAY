@@ -27,20 +27,20 @@ class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
     }
   }
 
-  def add(name: String, email: String, address: String, mobile: String, emergency: String): Unit = {
+  def add(name: String, email: String, address: String, mobile: String, emergency: String): Future[Int] = {
     db.run {
       userTable += User(name, email, address, mobile, emergency)
     }
   }
 
 
-  def create() = {
-    db.run {
-      userTable.schema.create
+  def create():Boolean= {
+    db.run {userTable.schema.create
     }
+    true
   }
 
-  def updateUser(id: Int, name: String, email: String, address: String, mobile: String, emergency: String): Unit = {
+  def updateUser(id: Int, name: String, email: String, address: String, mobile: String, emergency: String): Future[Int] = {
     db.run {
       userTable.filter(_.id === id).update(User(name, email, address, mobile,emergency,id))
     }

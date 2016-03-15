@@ -83,6 +83,8 @@ class DashboardController @Inject()(userRepo: UserRepo) extends Controller{
   def add = Action{
     Ok(views.html.add())
   }
+
+
   def addData =Action {implicit request =>
     addForm.bindFromRequest().fold(
 
