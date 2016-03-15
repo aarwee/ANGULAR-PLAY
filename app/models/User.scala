@@ -53,11 +53,8 @@ class UserRepo @Inject()(protected val dbConfigProvider:DatabaseConfigProvider)
 
   }
 
-  def deleteUser(name: String): Unit = {
-    db.run {
-      userTable.filter {
-        _.name === name
-      }.delete
+  def deleteUser(id: Int): Future[Int]= {
+    db.run {userTable.filter {_.id === id}.delete
     }
   }
 }

@@ -43,11 +43,11 @@ class DashboardController @Inject()(userRepo: UserRepo) extends Controller{
     )
   )
 
-//  val deleteForm= Form(
-//    tuple(
-//      "name"-> nonEmptyText,
-//    )
-//  )
+  val deleteForm= Form(
+
+    "id"-> number
+
+  )
 
 
 
@@ -86,39 +86,38 @@ class DashboardController @Inject()(userRepo: UserRepo) extends Controller{
   def addData =Action {implicit request =>
     awardForm.bindFromRequest().fold(
 
-      badForm => {println(badForm);Ok("hey")},
-      data => {userRepo.add(data._1,data._2,data._3,data._4,data._5 ); Ok("")}
+      badForm => {Ok("hey")},
+      data => {userRepo.add(data._1,data._2,data._3,data._4,data._5 ); Ok("deleted")}
     )
 
 
   }
-
+/*
   def update= Action{ implicit request =>
     Ok(views.html.update())
 
+  }*/
+
+def delete = Action{ implicit request =>
+  Ok(views.html.delete())
+
+}
+
+
+  def deleteData=Action{ implicit request =>
+
+   deleteForm.bindFromRequest.fold(
+
+     badForm => Ok(""),
+     data => { userRepo.deleteUser(data); Ok("deleted")}
+
+
+   )
+
+
   }
 
-//def delete = Action{ implicit request =>
-//  Ok(views.html.delete())
-//
-//}
-//
-//
-//  def deleteData=Action{ implicit request =>
-//
-//   deleteForm.bindFromRequest().fold(
-//
-//
-//       badForm => {println(badForm);Ok("hey")},
-//
-//       data => {
-//         userRepo.deleteUser(data._1 )
-//         Ok("")}
-//     )
-//
-//  }
-
-  def updateData = Action{ implicit request =>
+ /* def updateData = Action{ implicit request =>
 
     updateForm.bindFromRequest().fold(
 
@@ -129,6 +128,6 @@ class DashboardController @Inject()(userRepo: UserRepo) extends Controller{
         userRepo.updateUser(data._1, data._2, data._3, data._4, data._5, data._6); Ok("")}
     )
 
-  }
+  }*/
 
 }

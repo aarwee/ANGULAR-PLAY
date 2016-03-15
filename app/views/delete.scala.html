@@ -1,17 +1,19 @@
 
 @main("DELETE USER"){
+
+
 <div ng-controller="DeleteCtrl">
 
 
     <form>
-        <label>Enter the name of the user you want to delete:</label>
+        <label>Enter the Id of the user you want to delete:</label>
         <br>
         <br>
-        <input type="text" placeholder="name" class="text" ng-model="name" size="30">
+        <input type="text" placeholder="id" class="text" ng-model="id" size="30">
 
         <br>
         <br>
-        <input type="submit" class="btn btn-primary" ng-click="deleteTo()" value="Delete Student" >
+        <input type="submit" class="btn btn-primary" ng-click="deleteTo()" value="Delete User" >
         <br><br>
     </form>
 </div>

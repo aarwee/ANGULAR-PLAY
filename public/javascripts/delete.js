@@ -4,7 +4,7 @@ var demoApp = angular.module('demoApp', []);
         demoApp.controller('DeleteCtrl', function ($scope, $http){
 
         $scope.deleteTo = function(){
-var data1 = {"name":$scope.name};
+var data1 = {"id":parseInt($scope.id)};
 
 
        return $http({
@@ -18,5 +18,7 @@ var data1 = {"name":$scope.name};
 
 
         }})
+
+
 
 
